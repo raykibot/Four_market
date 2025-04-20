@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luo.infrastructure.dao.IRaffleActivityCountDAO">
+
+    <select id="queryRaffleActivityCountByActivityCountId"
+            resultType="com.luo.infrastructure.pojo.RaffleActivityCount">
+        select id,activity_count_id,total_count,day_count,month_count,create_time,update_time from
+        raffle_activity_count where activity_count_id = #{activityCountId}
+    </select>
+</mapper>
