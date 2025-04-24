@@ -4,6 +4,8 @@ import org.redisson.api.RBlockingDeque;
 import org.redisson.api.RBlockingQueue;
 import org.redisson.api.RDelayedQueue;
 
+import java.util.concurrent.TimeUnit;
+
 public interface IRedisService {
 
 
@@ -52,6 +54,8 @@ public interface IRedisService {
      * @return
      */
     Boolean setNx(String key);
+
+    Boolean setNx(String key, long expire, TimeUnit timeUnit);
 
 
     /**

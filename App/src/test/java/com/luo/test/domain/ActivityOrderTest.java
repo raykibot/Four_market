@@ -3,6 +3,7 @@ package com.luo.test.domain;
 import com.alibaba.fastjson.JSON;
 import com.luo.domain.activity.model.entity.ActivityOrderEntity;
 import com.luo.domain.activity.model.entity.ActivityShopCarEntity;
+import com.luo.domain.activity.model.entity.SkuRechargeEntity;
 import com.luo.domain.activity.service.IRaffleOrder;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -23,13 +24,15 @@ public class ActivityOrderTest {
     @Test
     public void test_order(){
 
-        ActivityShopCarEntity activityShopCarEntity = new ActivityShopCarEntity();
-        activityShopCarEntity.setSku(9011);
-        activityShopCarEntity.setUserId("luojiakeng");
-
-        ActivityOrderEntity raffleActivityOrder = raffleOrder.createRaffleActivityOrder(activityShopCarEntity);
-
-        log.info("订单信息:{}", JSON.toJSONString(raffleActivityOrder));
+//
+//        SkuRechargeEntity skuRechargeEntity = new SkuRechargeEntity();
+//        skuRechargeEntity.setUserId("luojiakeng");
+//        skuRechargeEntity.setSku(9011);
+//
+//
+//        String orderId = raffleOrder.createSkuRechargeOrder(skuRechargeEntity);
+//
+//        log.info("订单信息:{}", JSON.toJSONString());
     }
 
 }

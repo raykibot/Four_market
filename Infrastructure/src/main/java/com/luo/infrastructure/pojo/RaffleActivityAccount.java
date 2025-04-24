@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class RaffleActivityAccount {
     private Long id;
-    private Integer userId;
+    private String userId;
     private Integer activityId;
     private Integer totalCount;
     private Integer totalCountSurplus;

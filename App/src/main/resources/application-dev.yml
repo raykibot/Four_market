@@ -10,6 +10,24 @@ app:
     cross-origin: '*'
 
 
+spring:
+  # redis连接信息 默认没有配置密码
+  redis:
+    port: 6379
+    host: localhost
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+    listener:
+      simple:
+        prefetch: 1 # 每个消费者一次消费消息数量
+    topic:
+      activity_sku_stock_zero: activity_sku_stock_zero
+
+
 #spring:
 #  数据库连接信息
 #  datasource:
@@ -71,12 +89,6 @@ mini-db-router:
           max-lifetime: 1800000 #此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
           connection-timeout: 30000 #数据库连接超时时间,默认30秒，即30000
           connection-test-query: SELECT 1
-
-
-# redis连接信息 默认没有配置密码
-  redis:
-    port: 6379
-    host: localhost
 
 # myabtis配置
 mybatis:
