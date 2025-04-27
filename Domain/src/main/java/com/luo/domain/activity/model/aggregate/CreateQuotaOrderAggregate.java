@@ -4,11 +4,10 @@ import com.luo.domain.activity.model.entity.ActivityOrderEntity;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-public class CreateAggregateOrder {
+public class CreateQuotaOrderAggregate {
 
 
     private String userId;

@@ -9,18 +9,21 @@ import java.util.Date;
 
 @Data
 @Builder
-public class RaffleActivityCount {
+@AllArgsConstructor
+@NoArgsConstructor
+public class RaffleActivityAccountDay {
 
+    private Integer id;
 
-    private Long id;
+    private String userId;
 
-    private Integer activityCountId;
+    private Integer activityId;
 
-    private Integer totalCount;
+    private String day;
 
     private Integer dayCount;
 
-    private Integer monthCount;
+    private Integer dayCountSurplus;
 
     private Date createTime;
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luo.infrastructure.dao.IRaffleActivityAccountDayDAO">
+    <insert id="insertActivityAccountDay">
+        insert into raffle_activity_account_day
+        (user_id, activity_id, day, day_count, day_count_surplus, create_time, update_time)
+        values
+        (#{userId}, #{activityId}, #{day}, #{dayCount}, #{dayCountSurplus}, now(), now())
+    </insert>
+
+    <update id="updateActivityAccountDayQuota">
+        update raffle_activity_account_day set day_count_surplus = day_count_surplus - 1,
+        update_time = now()
+        where user_id = #{userId} and activity_id = #{activityId} and day = #{day} adb day_count_surplus > 0
+    </update>
+    <update id="updateActvityAccountDaySurplus">
+        update raffle_activity_account_day set day_count_surplus = day_count_surplus - 1,
+        update_time = now()
+        where user_id = #{userId} and activity_id = #{activityId}
+    </update>
+    <select id="queryActivityAccountDayByUserId"
+            resultType="com.luo.infrastructure.pojo.RaffleActivityAccountDay">
+        select id, user_id, activity_id, day, day_count, day_count_surplus, create_time, update_time
+        from raffle_activity_account_day where user_id = #{userId} and activity_id = #{activityId} and day = #{day}
+    </select>
+</mapper>

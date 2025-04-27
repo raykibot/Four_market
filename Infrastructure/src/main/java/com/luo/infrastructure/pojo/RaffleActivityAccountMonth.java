@@ -8,22 +8,28 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class RaffleActivityCount {
+public class RaffleActivityAccountMonth {
 
 
-    private Long id;
 
-    private Integer activityCountId;
+    private Integer id;
 
-    private Integer totalCount;
+    private String userId;
 
-    private Integer dayCount;
+    private Integer activityId;
+
+    private String month;
 
     private Integer monthCount;
+
+    private Integer monthCountSurplus;
 
     private Date createTime;
 
     private Date updateTime;
+
 
 }

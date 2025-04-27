@@ -2,7 +2,7 @@ package com.luo.domain.activity.service;
 
 import com.luo.domain.activity.model.vo.ActivitySkuStockVO;
 
-public interface ISkuStock {
+public interface IRaffleActivitySkuStockService {
 
 
     /**

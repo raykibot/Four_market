@@ -2,7 +2,7 @@ package com.luo.trigger.listener;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.TypeReference;
-import com.luo.domain.activity.service.ISkuStock;
+import com.luo.domain.activity.service.IRaffleActivitySkuStockService;
 import com.luo.type.envent.BaseEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -19,7 +19,7 @@ public class ActivityStockSkuZeroConsumer {
     private String topic ;
 
     @Autowired
-    private ISkuStock skuStock ;
+    private IRaffleActivitySkuStockService skuStock ;
 
 
     @RabbitListener(queuesToDeclare = @Queue(value = "activity_sku_stock_zero"))

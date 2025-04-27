@@ -1,4 +1,4 @@
-package com.luo.domain.activity.service.rule.impl;
+package com.luo.domain.activity.service.quota.rule.impl;
 
 import com.luo.domain.activity.model.entity.ActivityCountEntity;
 import com.luo.domain.activity.model.entity.ActivityEntity;
@@ -6,7 +6,7 @@ import com.luo.domain.activity.model.entity.ActivitySkuEntity;
 import com.luo.domain.activity.model.vo.ActivitySkuStockVO;
 import com.luo.domain.activity.repository.IActivityRepository;
 import com.luo.domain.activity.service.armory.IActivityDispatch;
-import com.luo.domain.activity.service.rule.AbstractActionChain;
+import com.luo.domain.activity.service.quota.rule.AbstractActionChain;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

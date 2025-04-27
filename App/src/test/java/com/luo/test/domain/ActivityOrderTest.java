@@ -1,10 +1,6 @@
 package com.luo.test.domain;
 
-import com.alibaba.fastjson.JSON;
-import com.luo.domain.activity.model.entity.ActivityOrderEntity;
-import com.luo.domain.activity.model.entity.ActivityShopCarEntity;
-import com.luo.domain.activity.model.entity.SkuRechargeEntity;
-import com.luo.domain.activity.service.IRaffleOrder;
+import com.luo.domain.activity.service.IRaffleActivityAccountQuotaService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +15,7 @@ public class ActivityOrderTest {
 
 
     @Autowired
-    private IRaffleOrder raffleOrder;
+    private IRaffleActivityAccountQuotaService raffleOrder;
 
     @Test
     public void test_order(){

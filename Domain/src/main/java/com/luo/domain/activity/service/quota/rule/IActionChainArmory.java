@@ -1,4 +1,4 @@
-package com.luo.domain.activity.service.rule;
+package com.luo.domain.activity.service.quota.rule;
 
 public interface IActionChainArmory {
 

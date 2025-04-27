@@ -1,7 +1,7 @@
 package com.luo.trigger.job;
 
 import com.luo.domain.activity.model.vo.ActivitySkuStockVO;
-import com.luo.domain.activity.service.ISkuStock;
+import com.luo.domain.activity.service.IRaffleActivitySkuStockService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -13,7 +13,7 @@ public class UpdateActivitySkuStockJob {
 
 
     @Autowired
-    private ISkuStock skuStock;
+    private IRaffleActivitySkuStockService skuStock;
 
     @Scheduled(cron = "0/5 * * * * ?")
     public void updateActivitySkuStock(){
