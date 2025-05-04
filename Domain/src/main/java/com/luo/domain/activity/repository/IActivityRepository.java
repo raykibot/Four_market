@@ -6,6 +6,7 @@ import com.luo.domain.activity.model.entity.*;
 import com.luo.domain.activity.model.vo.ActivitySkuStockVO;
 
 import java.util.Date;
+import java.util.List;
 
 public interface IActivityRepository {
 
@@ -41,4 +42,6 @@ public interface IActivityRepository {
     ActivityAccountMonthEntity queryActivityAccountMonthByUserId(String userId, Integer activityId, String month);
 
     ActivityAccountDayEntity queryActivityAccountDayByUserId(String userId, Integer activityId, String day);
+
+    List<ActivitySkuEntity> queryActivitySkuByActivityId(Integer activityId);
 }

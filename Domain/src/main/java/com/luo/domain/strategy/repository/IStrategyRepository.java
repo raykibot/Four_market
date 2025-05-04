@@ -51,4 +51,6 @@ public interface IStrategyRepository {
     StrategyAwardStockVO takeQueueValue();
 
     void updateStrategyAwardStock(Long strategyId, Integer awardId);
+
+    Long queryStrategyIdByActivityId(Integer activityId);
 }

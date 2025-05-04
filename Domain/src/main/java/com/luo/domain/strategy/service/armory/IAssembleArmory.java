@@ -8,7 +8,8 @@ public interface IAssembleArmory {
      * @param strategyId
      * @return boolean
      */
-    public Boolean assembleRaffleStrategy(Long strategyId);
+     Boolean assembleRaffleStrategy(Long strategyId);
 
 
+    Boolean assembleRaffleStrategyByActivityId(Integer activityId);
 }

@@ -44,20 +44,21 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy{
         DefaultChainFactory.StrategyAwardVO chainAwardVO = raffleLogicChain(userId, strategyId);
         //权重和黑名单直接返回 不用进入规则树  默认抽奖需要进入后续流程
         if (!chainAwardVO.getRuleModel().equals(DefaultChainFactory.LogicModel.DEFAULT.getCode())){
-            return buildRaffleAwardEntity(chainAwardVO.getAwardId(), strategyId);
+            return buildRaffleAwardEntity(chainAwardVO.getAwardId(), strategyId, null);
         }
 
         //3. 规则树抽奖计算
         DefaultTreeFactory.StrategyAwardVO treeAwardVO = raffleLogicTree(userId, strategyId, chainAwardVO.getAwardId());
 
-        return buildRaffleAwardEntity(treeAwardVO.getAwardId(),strategyId);
+        return buildRaffleAwardEntity(treeAwardVO.getAwardId(),strategyId, treeAwardVO.getAwardRuleValue());
     }
 
-    private RaffleAwardEntity buildRaffleAwardEntity(Integer awardId, Long strategyId) {
+    private RaffleAwardEntity buildRaffleAwardEntity(Integer awardId, Long strategyId, String awardConfig) {
         StrategyAwardEntity strategyAwardEntity = strategyRepository.queryStrategyAwardEntity(awardId,strategyId);
         return RaffleAwardEntity.builder()
                 .awardId(strategyAwardEntity.getAwardId())
-                .awardConfig(null)
+                .awardConfig(awardConfig)
+                .awardTitle(strategyAwardEntity.getAwardTitle())
                 .sort(strategyAwardEntity.getSort())
                 .build();
     }

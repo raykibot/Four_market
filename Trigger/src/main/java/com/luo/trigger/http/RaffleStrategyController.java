@@ -8,7 +8,7 @@ import com.luo.domain.strategy.model.entity.StrategyAwardEntity;
 import com.luo.domain.strategy.service.armory.IAssembleArmory;
 import com.luo.domain.strategy.service.rule.IRaffleAward;
 import com.luo.domain.strategy.service.rule.IRaffleStrategy;
-import com.luo.trigger.api.IRaffleService;
+import com.luo.trigger.api.IRaffleStrategyService;
 import com.luo.trigger.api.dto.RaffleAwardListRequestDTO;
 import com.luo.trigger.api.dto.RaffleRequestDTO;
 import com.luo.trigger.api.vo.RaffleAwardListResponseVO;
@@ -27,7 +27,7 @@ import java.util.List;
 @CrossOrigin("${app.config.cross-origin}")
 @RestController
 @RequestMapping("/api/${app.config.api-version}/raffle/")
-public class RaffleController implements IRaffleService {
+public class RaffleStrategyController implements IRaffleStrategyService {
 
     @Autowired
     private IAssembleArmory assembleArmory;

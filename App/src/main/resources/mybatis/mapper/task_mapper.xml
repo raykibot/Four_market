@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luo.infrastructure.dao.ITaskDAO">
+
+    <insert id="insert">
+        insert into task
+        (user_id, topic, message_id, message, state, create_time, update_time)
+        values
+        (#{userId}, #{topic}, #{messageId}, #{message}, #{state}, now(), now())
+    </insert>
+    <update id="updateTaskSendMessageCompleted">
+        update task
+        set
+        state = 'completed',
+        update_time = now()
+        where message_id = #{messageId} and user_id = #{userId}
+    </update>
+    <update id="updateTaskSendMessageFailed">
+        update task
+        set
+        state = 'fail',
+        update_time = now()
+        where message_id = #{messageId} and user_id = #{userId}
+    </update>
+    <select id="queryUnSendMessageTaskList" resultType="com.luo.infrastructure.pojo.Task">
+        select user_id, topic, message_id, message from task
+        where state = 'fail' or (state = 'create' and now() - update_time > 6) limit 10
+    </select>
+</mapper>

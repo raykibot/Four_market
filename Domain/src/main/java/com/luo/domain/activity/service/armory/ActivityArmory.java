@@ -1,15 +1,15 @@
 package com.luo.domain.activity.service.armory;
 
 
-import com.luo.domain.activity.model.entity.ActivityEntity;
 import com.luo.domain.activity.model.entity.ActivitySkuEntity;
 import com.luo.domain.activity.repository.IActivityRepository;
 import com.luo.type.constants.Commons;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
+
 
 @Service
 public class ActivityArmory implements IActivityDispatch, IActivityArmory{
@@ -30,6 +30,22 @@ public class ActivityArmory implements IActivityDispatch, IActivityArmory{
 
         //同上
         activityRepository.queryActivityCountByActivityCountId(activitySkuEntity.getActivityCountId());
+
+        return true;
+    }
+
+    @Override
+    public boolean assembleActivitySkuByActivityId(Integer activityId) {
+
+        List<ActivitySkuEntity> activitySkuEntityList = activityRepository.queryActivitySkuByActivityId(activityId);
+        for (ActivitySkuEntity activitySkuEntity : activitySkuEntityList) {
+            cacheActivityStockSkuCount(activitySkuEntity.getSku(), activitySkuEntity.getStockCountSurplus());
+
+            //查询时预热数据到缓存
+            activityRepository.queryActivityCountByActivityCountId(activitySkuEntity.getActivityCountId());
+        }
+        //查询时预热数据到缓存
+        activityRepository.queryRaffleActivityByActivityId(activityId);
 
         return true;
     }

@@ -11,4 +11,7 @@ public interface IActivityArmory {
     boolean assembleActivitySku(Integer sku);
 
 
+    boolean assembleActivitySkuByActivityId(Integer activityId);
+
+
 }

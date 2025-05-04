@@ -22,7 +22,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Repository
@@ -300,7 +302,7 @@ public class ActivityRepository implements IActivityRepository {
                     }
 
                     // 2. 创建或更新月账户，true - 存在则更新，false - 不存在则插入
-                    if (createPartakeOrderAggregate.isExistAccountDay()){
+                    if (createPartakeOrderAggregate.isExistAccountMonth()){
                         int updateMonthCount = raffleActivityAccountMonthDAO.updateActivityAccountMonthQuota
                                 (RaffleActivityAccountMonth.builder()
                                         .userId(userId)
@@ -323,7 +325,7 @@ public class ActivityRepository implements IActivityRepository {
                                         .monthCountSurplus(accountMonthEntity.getMonthCountSurplus() - 1)
                                         .build());
 
-                        //新建月账户 则更新总账表中日镜像额度
+                        //新建月账户 则更新总账表中月镜像额度
                         raffleActivityAccountDAO.updateActvityAccountMonthSurplus
                                 (RaffleActivityAccount.builder()
                                         .userId(userId)
@@ -450,5 +452,25 @@ public class ActivityRepository implements IActivityRepository {
                 .dayCount(raffleActivityAccountDay.getDayCount())
                 .dayCountSurplus(raffleActivityAccountDay.getDayCountSurplus())
                 .build();
+    }
+
+    @Override
+    public List<ActivitySkuEntity> queryActivitySkuByActivityId(Integer activityId) {
+
+        List<RaffleActivitySku> raffleActivitySkuList = raffleActivityDAO.queryActivitySkuByActivityId(activityId);
+
+        List<ActivitySkuEntity> activitySkuEntityList = new ArrayList<>();
+
+        for (RaffleActivitySku raffleActivitySku : raffleActivitySkuList) {
+            ActivitySkuEntity activitySkuEntity = ActivitySkuEntity.builder()
+                    .sku(raffleActivitySku.getSku())
+                    .activityId(raffleActivitySku.getActivityId())
+                    .activityCountId(raffleActivitySku.getActivityCountId())
+                    .stockCount(raffleActivitySku.getStockCount())
+                    .stockCountSurplus(raffleActivitySku.getStockCountSurplus())
+                    .build();
+            activitySkuEntityList.add(activitySkuEntity);
+        }
+        return activitySkuEntityList;
     }
 }

@@ -70,6 +70,12 @@ public class StrategyArmoryDispatch implements IAssembleArmory, IRaffleDispatch 
         return true;
     }
 
+    @Override
+    public Boolean assembleRaffleStrategyByActivityId(Integer activityId) {
+        Long strategyId = strategyRepository.queryStrategyIdByActivityId(activityId);
+        return assembleRaffleStrategy(strategyId);
+    }
+
 
     private void setCacheAwardCount(Integer awardId, Integer awardCount, Long strategyId) {
 

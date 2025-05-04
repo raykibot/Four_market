@@ -26,6 +26,19 @@ spring:
         prefetch: 1 # 每个消费者一次消费消息数量
     topic:
       activity_sku_stock_zero: activity_sku_stock_zero
+      send_award: send_award
+
+
+thread:
+  pool:
+    executor:
+      config:
+        core-pool-size: 20
+        max-pool-size: 50
+        keep-alive-time: 5000
+        block-queue-size: 5000
+        policy: CallerRunsPolicy
+
 
 
 #spring:

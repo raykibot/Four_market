@@ -17,20 +17,27 @@ public class EventPublisher {
     private RabbitTemplate rabbitTemplate;
 
 
-    public void publish(String topic, BaseEvent.EventMessage<?> baseEvent){
+    public void publish(String topic, BaseEvent.EventMessage<?> baseEvent) {
         try {
             String messageJSON = JSON.toJSONString(baseEvent);
             rabbitTemplate.convertAndSend(topic, messageJSON);
             log.info("库存为0 发送mq消息");
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             log.info("发送mq失败");
             throw e;
         }
     }
 
-
-
+    public void publish(String topic, String eventJSON) {
+        try {
+            String messageJSON = JSON.toJSONString(eventJSON);
+            rabbitTemplate.convertAndSend(topic, messageJSON);
+            log.info("库存为0 发送mq消息");
+        } catch (Exception e) {
+            log.info("发送mq失败");
+            throw e;
+        }
+    }
 
 
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luo.infrastructure.dao.IUserAwardRecordDAO">
+
+    <resultMap id="data" type="com.luo.infrastructure.pojo.UserAwardRecord">
+        <id property="id" column="id" />
+        <result property="userId" column="user_id" />
+        <result property="activityId" column="activity_id" />
+        <result property="strategyId" column="strategy_id" />
+        <result property="awardId" column="award_id" />
+        <result property="orderId" column="order_id" />
+        <result property="awardTitle" column="award_title" />
+        <result property="orderTime" column="order_time" />
+        <result property="awardState" column="award_state" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.luo.infrastructure.pojo.UserAwardRecord">
+        insert into user_award_record
+        (user_id,activity_id,strategy_id,award_id,order_id,award_title,order_time,award_state,create_time,update_time)
+        values
+        (#{userId},#{activityId},#{strategyId},#{awardId},#{orderId},#{awardTitle},#{orderTime},#{awardState},now(),now())
+    </insert>
+</mapper>

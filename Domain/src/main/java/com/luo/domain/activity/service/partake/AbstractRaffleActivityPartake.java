@@ -25,6 +25,15 @@ public abstract class AbstractRaffleActivityPartake implements IRaffleActivityPa
 
 
     @Override
+    public UserRaffleOrderEntity createOrder(String userId, Integer activityId){
+        PartakeRaffleActivityEntity partakeRaffleActivity = new PartakeRaffleActivityEntity();
+        partakeRaffleActivity.setUserId(userId);
+        partakeRaffleActivity.setActivityId(activityId);
+        return createOrder(partakeRaffleActivity);
+    }
+
+
+    @Override
     public UserRaffleOrderEntity createOrder(PartakeRaffleActivityEntity partakeRaffleActivity) {
 
         //1. 基础信息

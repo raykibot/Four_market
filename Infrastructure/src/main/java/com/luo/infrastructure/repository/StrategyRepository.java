@@ -300,4 +300,9 @@ public class StrategyRepository implements IStrategyRepository {
         strategyAward.setStrategyId(strategyId);
         strategyAwardDAO.updateStrategyAwardStock(strategyAward);
     }
+
+    @Override
+    public Long queryStrategyIdByActivityId(Integer activityId) {
+        return strategyDAO.queryStrategyIdByActivityId(activityId);
+    }
 }

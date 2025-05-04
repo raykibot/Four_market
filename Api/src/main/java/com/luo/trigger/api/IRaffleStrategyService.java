@@ -8,7 +8,7 @@ import com.luo.type.model.Response;
 
 import java.util.List;
 
-public interface IRaffleService {
+public interface IRaffleStrategyService {
 
 
     /**
