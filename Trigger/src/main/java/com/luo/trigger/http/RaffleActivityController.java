@@ -29,7 +29,6 @@ import java.util.Date;
 public class RaffleActivityController implements IRaffleActivityService {
 
 
-
     @Autowired
     private IActivityArmory activityArmory;
 
@@ -46,12 +45,10 @@ public class RaffleActivityController implements IRaffleActivityService {
     private IRaffleStrategy raffleStrategy;
 
 
-
-
     @RequestMapping(value = "/armory", method = RequestMethod.GET)
     @Override
     public Response<Boolean> armory(@RequestParam Integer activityId) {
-        try{
+        try {
 
             //活动装配
             activityArmory.assembleActivitySkuByActivityId(activityId);
@@ -67,7 +64,7 @@ public class RaffleActivityController implements IRaffleActivityService {
                     .data(true)
                     .build();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             log.info("活动装配，数据预热，失败 activityId:{}", activityId);
             return Response.<Boolean>builder()
                     .code(ResponseCode.FAIL.getCode())
@@ -82,8 +79,8 @@ public class RaffleActivityController implements IRaffleActivityService {
 
         try {
             // 1. 参数校验
-            if (StringUtils.isBlank(requestDTO.getUserId()) || requestDTO.getActivityId() == null){
-               throw new RuntimeException("传入参数为空");
+            if (StringUtils.isBlank(requestDTO.getUserId()) || requestDTO.getActivityId() == null) {
+                throw new RuntimeException("传入参数为空");
             }
 
             // 2. 参与活动 - 创建产于活动订单
@@ -93,6 +90,7 @@ public class RaffleActivityController implements IRaffleActivityService {
             RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(RaffleFactorEntity.builder()
                     .userId(userRaffleOrder.getUserId())
                     .strategyId(userRaffleOrder.getStrategyId())
+                    .endDateTime(userRaffleOrder.getEndDateTime())
                     .build());
 
             // 4. 存放结果 写入中奖记录

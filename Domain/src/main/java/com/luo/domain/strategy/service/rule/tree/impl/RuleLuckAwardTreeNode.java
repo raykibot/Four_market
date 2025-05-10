@@ -8,11 +8,13 @@ import com.luo.type.constants.Commons;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component("rule_luck_award")
 @Slf4j
 public class RuleLuckAwardTreeNode implements ILogicTreeNode {
     @Override
-    public DefaultTreeFactory.TreeActionEntity logic(String userId, Long strategyId, Integer awardId, String ruleValue) {
+    public DefaultTreeFactory.TreeActionEntity logic(String userId, Long strategyId, Integer awardId, String ruleValue, Date endDateTime) {
 
 
         log.info("规则树校验-兜底返回奖品");

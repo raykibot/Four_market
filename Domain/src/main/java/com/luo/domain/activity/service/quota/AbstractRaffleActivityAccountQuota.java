@@ -38,7 +38,7 @@ public abstract class AbstractRaffleActivityAccountQuota extends RaffleActivityA
         ActivityCountEntity activityCountEntity = queryActivityCountByActivityCountId(activitySkuEntity.getActivityCountId());
 
 
-        // 活动规则动作校验 todo 暂时先不做处理
+        // 活动规则动作校验
         IActionChain actionChain = defaultActionChainFactory.openChain();
         Boolean success = actionChain.actionChain(activitySkuEntity, activityEntity, activityCountEntity);
 

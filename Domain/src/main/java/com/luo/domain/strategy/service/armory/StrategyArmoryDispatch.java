@@ -150,8 +150,8 @@ public class StrategyArmoryDispatch implements IAssembleArmory, IRaffleDispatch 
     }
 
     @Override
-    public Boolean subtractStock(Long strategyId, Integer awardId) {
+    public Boolean subtractStock(Long strategyId, Integer awardId, Date endDateTime) {
         String caCheKey = Commons.RedisKey.STRATEGY_AWARD_COUNT_KEY + strategyId + Commons.UNDERLINE + awardId;
-        return strategyRepository.subtractStock(caCheKey);
+        return strategyRepository.subtractStock(caCheKey, endDateTime);
     }
 }

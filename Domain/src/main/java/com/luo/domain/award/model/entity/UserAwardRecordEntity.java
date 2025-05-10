@@ -34,7 +34,4 @@ public class UserAwardRecordEntity {
     private AwardStateVO awardState;
 
 
-
-
-
 }

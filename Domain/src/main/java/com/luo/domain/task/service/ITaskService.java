@@ -19,7 +19,4 @@ public interface ITaskService {
 
     void updateTaskFailed(String userId, String messageId);
 
-
-
-
 }

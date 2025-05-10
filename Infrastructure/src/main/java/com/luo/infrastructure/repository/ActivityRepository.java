@@ -473,4 +473,15 @@ public class ActivityRepository implements IActivityRepository {
         }
         return activitySkuEntityList;
     }
+
+    @Override
+    public Integer queryRaffleActivityAccountDayPartakeCount(Integer activityId, String userId) {
+
+        RaffleActivityAccountDay req = new RaffleActivityAccountDay();
+        req.setActivityId(activityId);
+        req.setUserId(userId);
+        req.setDay(req.currentDay());
+        Integer partakeCount = raffleActivityAccountDayDAO.queryActivityAccountDayPartakeCount(req);
+        return partakeCount == null ? 0 : partakeCount;
+    }
 }

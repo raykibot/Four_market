@@ -2,6 +2,9 @@ package com.luo.domain.activity.service;
 
 import com.luo.domain.activity.model.vo.ActivitySkuStockVO;
 
+/**
+ * 业务逻辑实现接口
+ */
 public interface IRaffleActivitySkuStockService {
 
 

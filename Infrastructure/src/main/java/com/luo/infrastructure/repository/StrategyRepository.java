@@ -87,6 +87,7 @@ public class StrategyRepository implements IStrategyRepository {
                     .awardCountSurplus(strategyAward.getAwardCountSurplus())
                     .awardRate(strategyAward.getAwardRate())
                     .sort(strategyAward.getSort())
+                    .ruleModels(strategyAward.getRuleModels())
                     .build();
             strategyAwardEntityList.add(build);
         }
@@ -151,19 +152,26 @@ public class StrategyRepository implements IStrategyRepository {
     }
 
     @Override
-    public Boolean subtractStock(String caCheKey) {
+    public Boolean subtractStock(String caCheKey,Date endDateTime) {
         long surplus = redisService.decr(caCheKey);
         if (surplus < 0) {
             redisService.setValue(caCheKey, 0);
+            return false;
         }
 
         //给奖品库存上锁
         String lockKey = caCheKey + Commons.UNDERLINE + surplus;
-        Boolean lockStatus = redisService.setNx(lockKey);
-        if (!lockStatus) {
-            log.info("上锁失败");
+        Boolean lock = false;
+        if (endDateTime != null){
+            long expire = endDateTime.getTime() - System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1);
+            lock = redisService.setNx(lockKey, expire, TimeUnit.MILLISECONDS);
+        } else {
+            lock = redisService.setNx(lockKey);
         }
-        return lockStatus;
+        if (!lock) {
+            log.info("上锁失败 lockKey:{}",lockKey);
+        }
+        return lock;
     }
 
     @Override
@@ -304,5 +312,19 @@ public class StrategyRepository implements IStrategyRepository {
     @Override
     public Long queryStrategyIdByActivityId(Integer activityId) {
         return strategyDAO.queryStrategyIdByActivityId(activityId);
+    }
+
+    @Override
+    public Map<String, Integer> queryAwardRuleLockCount(String[] treeIds) {
+        if (treeIds == null || treeIds.length == 0) return new HashMap<>();
+
+        List<RuleTreeNode> ruleTreeNodes = ruleTreeNodeDAO.queryRuleLocks(treeIds);
+        Map<String, Integer> ruleTreeNodeMap = new HashMap<>();
+        for (RuleTreeNode ruleTreeNode : ruleTreeNodes) {
+            String treeId = ruleTreeNode.getTreeId();
+            Integer count = Integer.valueOf(ruleTreeNode.getRuleValue());
+            ruleTreeNodeMap.put(treeId, count);
+        }
+        return ruleTreeNodeMap;
     }
 }

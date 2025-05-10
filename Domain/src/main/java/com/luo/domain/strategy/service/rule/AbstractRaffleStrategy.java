@@ -11,6 +11,8 @@ import com.luo.domain.strategy.service.rule.tree.factory.DefaultTreeFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 
 public abstract class AbstractRaffleStrategy implements IRaffleStrategy{
 
@@ -48,7 +50,7 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy{
         }
 
         //3. 规则树抽奖计算
-        DefaultTreeFactory.StrategyAwardVO treeAwardVO = raffleLogicTree(userId, strategyId, chainAwardVO.getAwardId());
+        DefaultTreeFactory.StrategyAwardVO treeAwardVO = raffleLogicTree(userId, strategyId, chainAwardVO.getAwardId(), raffleFactorEntity.getEndDateTime());
 
         return buildRaffleAwardEntity(treeAwardVO.getAwardId(),strategyId, treeAwardVO.getAwardRuleValue());
     }
@@ -65,5 +67,5 @@ public abstract class AbstractRaffleStrategy implements IRaffleStrategy{
 
     public abstract DefaultChainFactory.StrategyAwardVO raffleLogicChain(String userId, Long strategyId);
 
-    public abstract DefaultTreeFactory.StrategyAwardVO raffleLogicTree(String userId, Long strategyId, Integer awardId);
+    public abstract DefaultTreeFactory.StrategyAwardVO raffleLogicTree(String userId, Long strategyId, Integer awardId, Date endDateTime);
 }

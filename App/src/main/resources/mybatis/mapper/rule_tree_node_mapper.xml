@@ -8,4 +8,13 @@
         select id,tree_id,rule_key,rule_desc,rule_value,create_time,update_time
         from rule_tree_node where tree_id = #{treeId}
     </select>
+    <select id="queryRuleLocks" resultType="com.luo.infrastructure.pojo.RuleTreeNode">
+
+        select tree_id, rule_value from rule_tree_node where rule_key = 'rule_lock' and tree_id in
+        <foreach collection="array" item="treeId" open="(" separator="," close=")">
+            #{treeId}
+        </foreach>
+
+
+    </select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.luo.domain.strategy.service.armory;
 
+import java.util.Date;
+
 public interface IRaffleDispatch {
 
 
@@ -37,6 +39,6 @@ public interface IRaffleDispatch {
      * @param awardId
      * @return boolean
      */
-    Boolean subtractStock(Long strategyId, Integer awardId);
+    Boolean subtractStock(Long strategyId, Integer awardId, Date endDateTime);
 
 }

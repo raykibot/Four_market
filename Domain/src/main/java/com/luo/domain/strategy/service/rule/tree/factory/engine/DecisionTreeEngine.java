@@ -6,6 +6,7 @@ import com.luo.domain.strategy.service.rule.tree.ILogicTreeNode;
 import com.luo.domain.strategy.service.rule.tree.factory.DefaultTreeFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public class DecisionTreeEngine implements IDecisionTreeEngine {
     }
 
     @Override
-    public DefaultTreeFactory.StrategyAwardVO process(String userID, Long strategyId, Integer awardId) {
+    public DefaultTreeFactory.StrategyAwardVO process(String userID, Long strategyId, Integer awardId, Date endDateTime) {
 
         DefaultTreeFactory.StrategyAwardVO strategyAwardVO = null;
 
@@ -42,7 +43,7 @@ public class DecisionTreeEngine implements IDecisionTreeEngine {
             String ruleValue = ruleTreeNodeVO.getRuleValue();
 
 
-            DefaultTreeFactory.TreeActionEntity treeActionEntity = iLogicTreeNode.logic(userID, strategyId, awardId, ruleValue);
+            DefaultTreeFactory.TreeActionEntity treeActionEntity = iLogicTreeNode.logic(userID, strategyId, awardId, ruleValue, endDateTime);
 
             //获取过滤后的返回信息
             RuleLogicCheckTypeVO ruleLogicCheckTypeVO = treeActionEntity.getRuleLogicCheckTypeVO();

@@ -19,10 +19,8 @@ public class RequestTest {
 
     @Before
     public void assemble(){
-
         log.info("开始组装抽奖策略");
         Response<Boolean> status = raffleService.strategyArmory(100001L);
-
     }
 
 

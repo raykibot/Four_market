@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Slf4j
 @Component("rule_stock")
 public class RuleStockTreeNode implements ILogicTreeNode {
@@ -23,10 +25,10 @@ public class RuleStockTreeNode implements ILogicTreeNode {
 
 
     @Override
-    public DefaultTreeFactory.TreeActionEntity logic(String userId, Long strategyId, Integer awardId, String ruleValue) {
+    public DefaultTreeFactory.TreeActionEntity logic(String userId, Long strategyId, Integer awardId, String ruleValue, Date endDateTime) {
 
 
-        Boolean status = raffleDispatch.subtractStock(strategyId,awardId);
+        Boolean status = raffleDispatch.subtractStock(strategyId,awardId,endDateTime);
         log.info("规则树校验-库存扣减");
 
         if (status){

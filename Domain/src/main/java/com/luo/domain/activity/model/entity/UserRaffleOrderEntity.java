@@ -31,4 +31,6 @@ public class UserRaffleOrderEntity {
     // 订单状态
     private UserRaffleOrderStateVO orderState;
 
+    private Date endDateTime;
+
 }

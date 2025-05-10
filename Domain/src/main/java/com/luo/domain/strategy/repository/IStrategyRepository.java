@@ -7,7 +7,9 @@ import com.luo.domain.strategy.model.entity.StrategyRuleEntity;
 import com.luo.domain.strategy.model.vo.RuleTreeVO;
 import com.luo.domain.strategy.model.vo.StrategyAwardStockVO;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface IStrategyRepository {
     void setCacheAwardIds(String strategyId, List<Integer> awardIds, int size);
@@ -33,7 +35,7 @@ public interface IStrategyRepository {
 
     String queryRuleValue(Long strategyId, String ruleModel);
 
-    Boolean subtractStock(String caCheKey);
+    Boolean subtractStock(String caCheKey, Date endDateTime);
 
     StrategyAwardEntity queryStrategyAwardEntity(Integer awardId, Long strategyId);
 
@@ -53,4 +55,6 @@ public interface IStrategyRepository {
     void updateStrategyAwardStock(Long strategyId, Integer awardId);
 
     Long queryStrategyIdByActivityId(Integer activityId);
+
+    Map<String, Integer> queryAwardRuleLockCount(String[] treeIds);
 }

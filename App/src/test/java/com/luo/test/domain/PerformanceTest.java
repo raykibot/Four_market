@@ -46,19 +46,19 @@ public class PerformanceTest {
         log.info("100002装配结果：{}", assembleArmory.assembleRaffleStrategy(100002L));
     }
 
-    @Test
-    public void performanceTest() {
-//        ReflectionTestUtils.setField(ruleWeightLogicChain,"userScore",3000L);
-//        ReflectionTestUtils.setField(ruleLockTreeNode, "userRaffleCount", 1L);
-        RaffleFactorEntity raffleFactorEntity = new RaffleFactorEntity("user", 100002L);
-        RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
-        log.info("抽奖结果 awardId:{} awardConfig:{} sort:{}", raffleAwardEntity.getAwardId(), raffleAwardEntity.getAwardConfig(), raffleAwardEntity.getSort());
-
-//        for (int i = 0; i < 20; i++) {
-//            RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
-//            log.info("抽奖结果 awardId:{} awardConfig:{} sort:{}", raffleAwardEntity.getAwardId(), raffleAwardEntity.getAwardConfig(), raffleAwardEntity.getSort());
-//        }
-    }
+//    @Test
+//    public void performanceTest() {
+////        ReflectionTestUtils.setField(ruleWeightLogicChain,"userScore",3000L);
+////        ReflectionTestUtils.setField(ruleLockTreeNode, "userRaffleCount", 1L);
+//        RaffleFactorEntity raffleFactorEntity = new RaffleFactorEntity("user", 100002L);
+//        RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
+//        log.info("抽奖结果 awardId:{} awardConfig:{} sort:{}", raffleAwardEntity.getAwardId(), raffleAwardEntity.getAwardConfig(), raffleAwardEntity.getSort());
+//
+////        for (int i = 0; i < 20; i++) {
+////            RaffleAwardEntity raffleAwardEntity = raffleStrategy.performRaffle(raffleFactorEntity);
+////            log.info("抽奖结果 awardId:{} awardConfig:{} sort:{}", raffleAwardEntity.getAwardId(), raffleAwardEntity.getAwardConfig(), raffleAwardEntity.getSort());
+////        }
+//    }
 
 
 }
